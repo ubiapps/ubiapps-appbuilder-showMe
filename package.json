@@ -1,0 +1,16 @@
+{
+  "name": "ubiapps-appbuilder-showMe",
+  "version": "0.0.0",
+  "description": "UbiShowMe template and customisation code",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "toby.ealden@gmail.com",
+  "license": "BSD-2-Clause",
+  "dependencies": {
+    "ncp": "~0.5.0",
+    "tmp": "0.0.23",
+    "archiver": "~0.6.1"
+  }
+}

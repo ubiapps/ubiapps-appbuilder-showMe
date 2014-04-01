@@ -1,0 +1,87 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>UbiShowMe</title>
+    <link href="jquery-ui/css/ut-smoothness/jquery-ui-1.10.3.custom.min.css" type="text/css" rel="stylesheet" />
+    <link href="style.css" type="text/css" rel="stylesheet" />
+    <link href="SlickGrid/slick.grid.css" type="text/css" rel="stylesheet" />
+    <script src="http://ezh.ubiapps.com:8080/webinos.js"></script>
+    <script src="jquery.js"></script>
+    <script src="jquery-ui/js/jquery-ui-1.10.3.custom.min.js"></script>
+    <script src="jquery.event.drag-2.2.js"></script>
+    <script src="jquery.event.drop-2.2.js"></script>
+    <script src="SlickGrid/slick.core.js"></script>
+    <script src="SlickGrid/slick.grid.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBdYy1RHr1ryZejV0uocIsAnOyY5G43smo&sensor=false"></script>
+    <script src="markerclusterer_compiled.js"></script>
+    <script src="config.js"></script>
+    <script src="ubiShowMe.js"></script>
+</head>
+<body>
+<header>
+    <h1>UbiShowMe</h1>
+</header>
+<div>
+    <div class="collapsible" id="parameters"><span class="ui-icon ui-icon-triangle-1-s"></span>Show Me</div>
+    <div class="panel">
+        <table style="width:100%;">
+            <tr>
+                <td>Show me data from:</td>
+                <td><select id="datasetList"><option>[dataset...]</option></select></td>
+            </tr>
+            <tr>
+                <td>where:</td>
+                <td><select id="fieldList"><option>[field...]</option></select></td>
+            </tr>
+            <tr>
+                <td>is</td>
+                <td><select id="operatorList"><option value="=">equal to</option><option value=">">greater than</option><option value="<">less than</option><option value="like">contains</option></select></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><input id="literal" type="text" /> / <select id="compareFieldList"><option>[field...]</option></select></td>
+            </tr>
+            <tr><td colspan="2" style="text-align: right;"><button id="ruleBtn">add rule</button></td></tr>
+            <tr><td colspan="2"><div id="ruleList"></div></td></tr>
+            <tr>
+                <td>combine</td>
+                <td><input type="radio" name="combine" id="combineAll" checked value="all" /><label for="combineAll">show me data that meets ALL of these criteria</label><br /><input type="radio" name="combine" id="combineAny" value="any" /><label for="combineAny">show me data that meets ANY of these criteria</label></td>
+            </tr>
+            <tr>
+                <td>sort by</td>
+                <td><select id="sortList"><option>[field...]</option></select> <select id="sortDirectionList"><option value="asc">ascending</option><option value="desc">descending</option></select></td>
+            </tr>
+            <tr>
+                <td colspan="2"><button id="showMeBtn">show me</button><button id="resetBtn">reset</button></td>
+            </tr>
+        </table>
+    </div>
+    <div class="collapsible" id="results"><span class="ui-icon ui-icon-triangle-1-e"></span>Results</div>
+    <div class="panel hidden">
+        <div id="pager">
+            <button id="prevBtn">prev</button> <button id="nextBtn">next</button> <select id="pageSize"><option value="100">100 per page</option><option value="500">500 per page</option><option value="1000">1000 per page</option><option value="10000">10000 per page</option></select> <div id="rowCount"></div>
+        </div>
+        <div id="views">
+            <ul id="viewTabs">
+                <li><a href="#gridView">grid</a></li>
+                <li><a href="#graphView">graph</a></li>
+                <li><a href="#mapView">map</a></li>
+            </ul>
+            <div id="gridView">
+                <div id="slickGrid"></div>
+            </div>
+            <div id="graphView">
+                <div id="graph">coming soon...</div>
+            </div>
+            <div id="mapView">
+                <div id="map"></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="feedback"></div>
+</div>
+</body>
+</html>
