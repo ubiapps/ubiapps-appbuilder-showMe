@@ -224,11 +224,19 @@ function showMap() {
       animation: google.maps.Animation.DROP
     });
     google.maps.event.addListener(marker, "click", function() {
-      var content = "date: " + new Date(rec.Date).format("dd-MM-yyyy ") + new Date(rec.Time).format("h:mm:ss") + "<br />" +
-        "day of week: " + ubiapps.ubiShowMe.dayLookup[rec.Day_of_Week] + "<br />" +
-        "no. vehicles: " + rec.Number_of_Vehicles + "<br />" +
-        "no. casualties: " + rec.Number_of_Casualties + "<br />" +
-        "speed limit: " + rec.Speed_limit;
+      // Todo - fix this hack. Add marker fields to configuration data.
+      var content;
+      if (rec.hasOwnProperty("Number_of_Vehiclees")) {
+        content = "date: " + new Date(rec.Date).format("dd-MM-yyyy ") + new Date(rec.Time).format("h:mm:ss") + "<br />" +
+          "day of week: " + ubiapps.ubiShowMe.dayLookup[rec.Day_of_Week] + "<br />" +
+          "no. vehicles: " + rec.Number_of_Vehicles + "<br />" +
+          "no. casualties: " + rec.Number_of_Casualties + "<br />" +
+          "speed limit: " + rec.Speed_limit;
+      } else {
+        content = "location: " + rec.Location + "<br />" +
+          "proposal: " + rec.Proposal + "<br />" +
+          "decision: " + rec.Decision;
+      }
       ubiapps.ubiShowMe.infoWindow.setContent("<div>" + content + "</div>");
       ubiapps.ubiShowMe.infoWindow.open(ubiapps.ubiShowMe.map,marker);
     });
